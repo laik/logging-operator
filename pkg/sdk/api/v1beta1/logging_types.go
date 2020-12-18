@@ -45,6 +45,7 @@ type LoggingSpec struct {
 	FlowConfigCheckDisabled                bool             `json:"flowConfigCheckDisabled,omitempty"`
 	FlowConfigOverride                     string           `json:"flowConfigOverride,omitempty"`
 	FluentbitSpec                          *FluentbitSpec   `json:"fluentbit,omitempty"`
+	NodeAgents                             []*NodeAgent     `json:"nodeAgents,omitempty"`
 	FluentdSpec                            *FluentdSpec     `json:"fluentd,omitempty"`
 	DefaultFlowSpec                        *DefaultFlowSpec `json:"defaultFlow,omitempty"`
 	GlobalFilters                          []Filter         `json:"globalFilters,omitempty"`
