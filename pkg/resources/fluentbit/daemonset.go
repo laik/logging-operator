@@ -16,6 +16,7 @@ package fluentbit
 
 import (
 	"crypto/sha256"
+	"flag"
 	"fmt"
 	"strconv"
 
@@ -120,12 +121,18 @@ func (r *Reconciler) daemonSet() (runtime.Object, reconciler.DesiredState, error
 	return desired, reconciler.StatePresent, nil
 }
 
+var dockerPath = "/var/lib/docker/containers"
+
+func init() {
+	flag.StringVar(&dockerPath, "docker_path", "/var/lib/docker/containers", "-docker_path /var/lib/docker/containers")
+}
+
 func (r *Reconciler) generateVolumeMounts() (v []corev1.VolumeMount) {
 	v = []corev1.VolumeMount{
 		{
 			Name:      "varlibcontainers",
 			ReadOnly:  true,
-			MountPath: "/var/lib/docker/containers",
+			MountPath: dockerPath,
 		},
 		{
 			Name:      "varlogs",
